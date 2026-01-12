@@ -1,8 +1,8 @@
 # 🚩 Ordal (Orang Dalam Engine)
 
-**"Kenapa harus kompeten kalau punya paman? Kenapa harus belajar koding kalau punya aura?"**
+**"AIAIAIAIAIAIAI"**
 
-`ordal-js` adalah library TypeScript buat bantu sistem rekrutmen yang kadang suka ngikutin aturan ketat. Library ini pakai algoritma **Nepotism-First (NF)** buat bypass ATS (Applicant Tracking System) kalau ada koneksi yang pas.
+`ordal` adalah library TypeScript buat bantu sistem rekrutmen yang kadang suka ngikutin aturan ketat. Library ini pakai algoritma **Nepotism-First (NF)** buat bypass ATS (Applicant Tracking System) kalau ada orang dalam yang pas.
 
 ---
 
