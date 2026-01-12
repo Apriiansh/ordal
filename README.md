@@ -2,60 +2,135 @@
 
 **"AIAIAIAIAIAIAI"**
 
-`ordal` adalah library TypeScript buat bantu sistem rekrutmen yang kadang suka ngikutin aturan ketat. Library ini pakai algoritma **Nepotism-First (NF)** buat bypass ATS (Applicant Tracking System) kalau ada orang dalam yang pas.
+`ordal` adalah library TypeScript untuk membantu sistem rekrutmen yang terlalu kaku. Library ini menggunakan algoritma **Nepotism-First (NF)** untuk memastikan "kelancaran" administrasi jika terdeteksi adanya aura orang dalam.
 
 ---
 
 ## 🚀 Fitur Utama
 
-* **Aura Detection**: Deteksi otomatis kandidat yang punya aura tinggi dari jabatan referensinya.
-* **ATS Bypass**: Kasih skor 100 instan buat yang punya koneksi "dalam".
-* **SiapaTuh Logic**: Validasi hubungan keluarga (Paman, Bapak, dll) buat tentuin jalur belakang.
-* **Penyesuaian Etika**: Kalau perlu, sistem otomatis "sesuaiin" aturan.
-* **Custom Aura**: Tambah jabatan sakti sendiri kayak `KETUA_MK` atau `PAMAN_REKTOR`.
-* **Batch Evaluation**: Evaluasi banyak kandidat sekaligus buat perusahaan besar.
-* **Data Persistence**: Simpan dan load data staff dari file JSON.
-* **Export Reports**: Export hasil evaluasi ke JSON atau CSV buat laporan.
-* **API Server**: Server Express buat integrasi web, bisa dipanggil dari frontend.
+* **Aura Detection**: Menghitung bobot "kesaktian" referensi (Ketua MK > HRD).
+* **ATS Bypass**: Otomatis skor 100 bagi yang memiliki privilese.
+* **SiapaTuh Logic**: Validasi hubungan (Paman, Bapak, Mertua) untuk bypass etika.
+* **Hilirisasi Batch**: Evaluasi masal pelamar dalam satu kali proses.
+* **Cyber Export**: Export laporan hasil seleksi ke format CSV/JSON.
 
 ---
 
-## 📦 Cara Download dan Pakai
+## 📦 Cara Pakai
 
-1. **Download**: Clone repo atau download zip dari GitHub.
-   ```
-   git clone https://github.com/username/ordal.git
-   cd ordal
-   ```
+```typescript
+import { Ordal } from 'ordal';
 
-2. **Install Dependencies**:
-   ```
-   npm install
-   ```
+const staff = [{ name: 'Mulyono', posisi: 'Presiden' }];
+const engine = new Ordal(staff);
 
-3. **Build**:
-   ```
-   npm run build
-   ```
+// Evaluasi Batch (Hilirisasi Seleksi)
+const candidates = [
+  { name: 'Fufufafa', score: 20, referenceName: 'Mulyono', siapaTuh: 'Bapak' },
+  { name: 'Agus', score: 90 } // Jalur langit
+];
 
-4. **Pakai di Kode**:
-   Import dan pakai di project TypeScript/Node.js kamu:
-   ```typescript
-   import { Ordal } from './dist/index'; // Atau path ke src/index.ts jika belum build
+const report = engine.evaluateBatch(candidates);
+console.log(report.summary); 
+// Output: { total: 2, passed: 2, privilegeBypassed: 1 }
 
-   const staffData = [{ name: 'Pak Bos', posisi: 'BOS' }];
-   const ordal = new Ordal(staffData);
-   const result = ordal.bypassATS(85, 'Pak Bos', 'Paman');
-   console.log(result); // { finalScore: 100, isPassed: true, ... }
-   ```
-
-5. **Jalankan Server API** (Opsional):
-   ```
-   npm start
-   ```
-   Akses endpoints di `http://localhost:3000`.
+// Export ke CSV (Format Cyber)
+console.log(engine.exportResults(report.results, 'csv'));
+```
 
 ---
+
+## 🌐 API Endpoints
+
+Jika ingin pakai sebagai server API, jalankan `npm run server` (atau `npx ts-node src/server.ts`).
+
+### POST /evaluate
+Evaluasi kandidat tunggal.
+
+**Request Body:**
+```json
+{
+  "score": 20,
+  "referenceName": "Mulyono",
+  "siapaTuh": "Bapak"
+}
+```
+
+**Response:**
+```json
+{
+  "finalScore": 100,
+  "isPassed": true,
+  "method": "Privilege-Based Bypass (+999 Aura)",
+  "reason": "Si Bapak (Mulyono) Presiden memiliki aura (100). GACOR KANG."
+}
+```
+
+### POST /evaluate-batch
+Evaluasi batch kandidat.
+
+**Request Body:**
+```json
+{
+  "candidates": [
+    {
+      "name": "Fufufafa",
+      "score": 20,
+      "referenceName": "Mulyono",
+      "siapaTuh": "Bapak"
+    }
+  ]
+}
+```
+
+**Response:**
+```json
+{
+  "results": [
+    {
+      "finalScore": 100,
+      "isPassed": true,
+      "method": "Privilege-Based Bypass (+999 Aura)",
+      "reason": "Si Bapak (Mulyono) Presiden memiliki aura (100). GACOR KANG."
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "privilegeBypassed": 1
+  }
+}
+```
+
+### POST /export
+Export hasil evaluasi.
+
+**Request Body:**
+```json
+{
+  "results": [
+    {
+      "finalScore": 100,
+      "isPassed": true,
+      "method": "Privilege-Based Bypass (+999 Aura)",
+      "reason": "Si Bapak (Mulyono) Presiden memiliki aura (100). GACOR KANG."
+    }
+  ],
+  "format": "csv"
+}
+```
+
+**Response:** (CSV)
+```
+finalScore,isPassed,method,reason
+100,true,Privilege-Based Bypass (+999 Aura),"Si Bapak (Mulyono) Presiden memiliki aura (100). GACOR KANG."
+```
+
+Contoh curl:
+```bash
+curl -X POST http://localhost:3000/evaluate -H "Content-Type: application/json" -d '{"score": 20, "referenceName": "Mulyono"}'
+```
 
 ## ⚠️ Disclaimer
 
