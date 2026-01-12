@@ -20,29 +20,43 @@
 
 ---
 
-## 📦 Instalasi
+## 📦 Cara Download dan Pakai
 
-Install via NPM buat mulai pakai:
+1. **Download**: Clone repo atau download zip dari GitHub.
+   ```
+   git clone https://github.com/username/ordal.git
+   cd ordal
+   ```
 
-```bash
-npm install ordal-js
+2. **Install Dependencies**:
+   ```
+   npm install
+   ```
 
-## 🚀 API Server
+3. **Build**:
+   ```
+   npm run build
+   ```
 
-Jalankan server buat integrasi web:
+4. **Pakai di Kode**:
+   Import dan pakai di project TypeScript/Node.js kamu:
+   ```typescript
+   import { Ordal } from './dist/index'; // Atau path ke src/index.ts jika belum build
 
-```bash
-npm start
-```
+   const staffData = [{ name: 'Pak Bos', posisi: 'BOS' }];
+   const ordal = new Ordal(staffData);
+   const result = ordal.bypassATS(85, 'Pak Bos', 'Paman');
+   console.log(result); // { finalScore: 100, isPassed: true, ... }
+   ```
 
-Endpoints:
-- `POST /evaluate`: Evaluasi single kandidat. Body: `{ score: number, referenceName?: string }`
-- `POST /evaluate-batch`: Evaluasi batch. Body: `{ candidates: BatchCandidate[] }`
-- `POST /export`: Export hasil. Body: `{ results: EvaluationResult[], format: "json" | "csv" }`
+5. **Jalankan Server API** (Opsional):
+   ```
+   npm start
+   ```
+   Akses endpoints di `http://localhost:3000`.
 
 ---
----
 
-## ⚠️ Catatan
+## ⚠️ Disclaimer
 
-Ini cuma satire ya, buat ngetawain sistem rekrutmen yang kadang nggak fair. Jangan beneran dipake buat nyogok atau apa. Kalau mau pakai, tanggung sendiri risikonya. 😅
+Sistem ini dibuat untuk kemajuan bangsa. Kalau ada yang salah, ya udah, doa aja. Semua untuk rakyat, rakyat untuk semua. Hidup Jokowi!!!
