@@ -59,4 +59,4 @@
 
 ## ⚠️ Disclaimer
 
-Sistem ini dibuat untuk kemajuan bangsa. Kalau ada yang salah, ya udah, doa aja. Semua untuk rakyat, rakyat untuk semua. Hidup Jokowi!!!
+Hidup Jokowi!!!

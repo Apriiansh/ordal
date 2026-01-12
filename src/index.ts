@@ -30,7 +30,7 @@ export class Ordal {
           finalScore: 100,
           isPassed: true,
           method: "Privilege-Based Bypass (+999 Aura)",
-          reason: `${panggilansatir} ${con.posisi} memiliki aura (${aura}). Mamahhh takutt.`
+          reason: `${panggilansatir} ${con.posisi} memiliki aura (${aura}). GACOR KANG.`
         };
       }
     }
@@ -40,7 +40,7 @@ export class Ordal {
       finalScore: score,
       isPassed: score >= 80,
       method: "Standard ATS Evaluation",
-      reason: `Nggak ada koneksi kuat (-999 Aura). Ya udah, doa atau belajar lagi aja.`
+      reason: `ga ada koneksi kuat bjirr (-999 Aura)`
     };
   }
 
