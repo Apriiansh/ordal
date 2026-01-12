@@ -1,0 +1,42 @@
+{
+  "name": "ordal",
+  "version": "1.0.0",
+  "description": "Enterprise-grade nepotism engine for bypassing standard recruitment bureaucracies.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "start": "ts-node src/server.ts",
+    "prepublishOnly": "npm run build",
+    "bersihkan-birokrasi": "rm -rf dist",
+    "demo": "ts-node examples/hr-portal-demo.ts"
+  },
+  "keywords": [
+    "ordal",
+    "19-juta-lapangan-pekerjaan",
+    "nepotisme",
+    "ats-bypass",
+    "indonesia-emas-2045",
+    "aura-engine",
+    "paman-sam",
+    "mulyono"
+  ],
+  "author": "YourName (Penyintas Lowongan Kerja)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "express": "^5.2.1"
+  }
+}
